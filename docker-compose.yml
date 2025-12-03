@@ -1,0 +1,18 @@
+services:
+  app:
+    # 1. Usar el Dockerfile local
+    build: .
+    # 2. Mapear el puerto del host al puerto del contenedor (5173)
+    ports:
+      - "5173:5173" 
+    # 3. Montar el código local para desarrollo en tiempo real
+    volumes:
+      - .:/app
+      # 4. Volumen anónimo para que node_modules viva dentro del contenedor
+      - /app/node_modules
+    # 5. Sobreescribir el comando para que Vite escuche en 0.0.0.0 (necesario en Docker)
+    command: pnpm run dev -- --host 0.0.0.0
+    
+    # Mantener la sesión interactiva
+    stdin_open: true 
+    tty: true
