@@ -35,4 +35,4 @@ const useWindowStore = create(
     }))
 );
 
-export { useWindowStore };
+export default useWindowStore;
